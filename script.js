@@ -1,5 +1,7 @@
 // script.js
 // Simple Carousel Functionality
+
+/*
 document.addEventListener('DOMContentLoaded', () => {
     const carouselItems = document.querySelectorAll('.carousel-item');
     const prevBtn = document.querySelector('.carousel-control.prev');
@@ -39,3 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+*/

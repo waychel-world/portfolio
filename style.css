@@ -39,8 +39,8 @@ nav {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
+    font-size: 1.7rem;
+    font-weight: 500;
     color: var(--primary);
 }
 
@@ -69,7 +69,7 @@ nav {
 .hero-banner {
   position: relative;
   height: 85vh; /* Adjustable height */
-  max-height: 800px; /* Prevents excessive height on large screens */
+  max-height: 600px; /* Prevents excessive height on large screens */
   min-height: 400px; /* Minimum height */
   overflow: hidden;
   margin-bottom: 4rem; /* Creates space for next section */
@@ -110,8 +110,12 @@ nav {
 
 .hero-content h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.15;
+}
+
+.hero-content h1.make {
+  font-size: clamp(7rem, 8.5vw, 10rem);
+  line-height: 1.3;    
 }
 
 .hero-content p {
@@ -236,14 +240,16 @@ nav {
 }
 
 .text-section h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 2.25vw, 2.5rem);
     margin-bottom: 1.5rem;
     color: var(--primary);
 }
 
 .text-section p {
     margin-bottom: 1.2rem;
-    font-size: 1.1rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 1.25vw, 1.375rem);
 }
 
 .text-section ul {
@@ -258,6 +264,34 @@ nav {
 .alt-bg {
     background-color: white;
 }
+
+
+/* Text section grid layouts */
+
+#about {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+}
+
+.content {
+    flex: 75%;
+}
+
+.headshot {
+    flex: 25%;
+}
+
+.headshot-image {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    height: clamp(200px, 30vw, 500px);
+    object-fit: cover;
+    margin: 0 auto;
+    transition: height 0.3s ease;
+}
+
+
 
 /* Contact Button */
 .contact-btn {
@@ -295,7 +329,7 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    nav {
+    nav { 
         flex-direction: column;
         padding: 1rem;
     }
@@ -314,5 +348,9 @@ footer {
     
     .text-section {
         padding: 4rem 1.5rem;
+    }
+
+    #about {
+        flex-direction: column;
     }
 }

@@ -190,6 +190,7 @@ nav {
     display: flex;
     gap: 80px;
     align-items: center;
+    padding-bottom: 2rem;
 }
 
 .content {
@@ -212,17 +213,21 @@ nav {
 
 /* Project tiles layouts */
 
+#projects {
+    padding-top: 0;
+}
+
 .project-box {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 120px;
     padding: 20px;
 }
 
 .project-item {
     flex: 1 0 calc(33.333% - 20px);
     min-width: 400px;
-    max-width: 500px;
+    max-width: 550px;
     display: flex;
     border-radius: 8px;
     background: #ffffff;
@@ -231,7 +236,6 @@ nav {
 
 .project-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .project-link {
@@ -239,29 +243,29 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 0;
     text-decoration: none;
     color: #333;
     width: 100%;
 }
 
 .project-img {
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 330px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
 .project-name {
-    font-weight: bold;
-    margin: 5px 0;
-    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 7px 0;
+    font-size: 1.25rem;
 }
 
 .project-byline {
     color: #666;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 

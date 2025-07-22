@@ -210,6 +210,25 @@ nav {
     transition: height 0.3s ease;
 }
 
+#contact {
+    display: flex;
+    gap: 80px;
+    align-items: top;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.end {
+    flex: 25%;
+}
+
+.end-image {
+    border-radius: 5%;
+    height: clamp(200px, 45vw, 600px);
+    object-fit: cover;
+    margin: 0 auto;
+    transition: height 0.3s ease;
+}
 
 /* Project tiles layouts */
 

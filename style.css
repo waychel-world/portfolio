@@ -347,6 +347,7 @@ footer {
 
     .project-category {
     padding-top: 30%;
+    padding-bottom: 8%;
     }
 
     .project-box {
@@ -355,7 +356,7 @@ footer {
     }
 
     .project-link {
-    align-items: left;
+    align-items: flex-start;
     text-align: left;
     }
 

@@ -346,17 +346,12 @@ footer {
 
     .project-box {
         gap: 80px;
-        padding: 10px;
+        padding: 0px;
     }
 
     .project-item {
         flex: 1 0 calc(33.333% - 20px);
-        min-width: 400px;
-        max-width: 550px;
-        display: flex;
-        border-radius: 8px;
-        background: #ffffff;
-        transition: transform 0.3s ease;
+        min-width: 300px;
     }
     
     #contact {

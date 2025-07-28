@@ -354,16 +354,27 @@ footer {
         padding: 0px;
     }
 
+    .project-link {
+    align-items: left;
+    text-align: left;
+    }
+
     .project-item {
         min-width: 200px;
     }
     
     .project-img {
-    object-fit: scale-down;
+    object-fit: cover;
+    height: 210px;
     }
 
     #contact {
         flex-direction: column;
         gap: 30px;
     }
+
+    .end-image {
+    height: clamp(200px, 120vw, 600px);
+    }
+
 }

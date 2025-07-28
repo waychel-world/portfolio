@@ -221,7 +221,7 @@ nav {
 }
 
 .project-item {
-    flex: 1 0 calc(33.333% - 20px);
+    flex: 1 1;
     min-width: 400px;
     max-width: 550px;
     display: flex;
@@ -344,14 +344,17 @@ footer {
         gap: 30px;
     }
 
+    .project-category {
+    padding-top: 30%;
+    }
+
     .project-box {
         gap: 80px;
         padding: 0px;
     }
 
     .project-item {
-        flex: 1 0 calc(33.333% - 20px);
-        min-width: 250px;
+        min-width: 200px;
     }
     
     #contact {

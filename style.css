@@ -230,7 +230,8 @@ nav {
     transition: transform 0.3s ease;
 }
 
-.project-item:hover {
+.project-item:hover, 
+.project-item:active {
     transform: translateY(-5px);
 }
 
@@ -357,6 +358,10 @@ footer {
         min-width: 200px;
     }
     
+    .project-img {
+    object-fit: scale-down;
+    }
+
     #contact {
         flex-direction: column;
         gap: 30px;

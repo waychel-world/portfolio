@@ -337,15 +337,20 @@ footer {
         margin: 0 1rem;
     }
     
-    .carousel {
-        height: 60vh;
-    }
-    
     .text-section {
         padding: 4rem 1.5rem;
     }
 
     #about {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    #projects {
+    padding-top: 0;
+    }
+    
+    #contact {
         flex-direction: column;
     }
 }

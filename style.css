@@ -344,8 +344,19 @@ footer {
         gap: 30px;
     }
 
-    #projects {
-    padding-top: 0;
+    .project-box {
+        gap: 80px;
+        padding: 10px;
+    }
+
+    .project-item {
+        flex: 1 0 calc(33.333% - 20px);
+        min-width: 400px;
+        max-width: 550px;
+        display: flex;
+        border-radius: 8px;
+        background: #ffffff;
+        transition: transform 0.3s ease;
     }
     
     #contact {

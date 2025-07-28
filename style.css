@@ -123,29 +123,6 @@ nav {
   margin-bottom: 2rem;
 }
 
-/* Ensures content doesn't overlap on small screens */
-@media (max-width: 768px) {
-  .hero-banner {
-    height: 75vh;
-    min-height: 400px;
-  }
-  
-  .hero-content {
-    left: 5%;
-    bottom: 10%;
-    padding-right: 5%;
-  }
-  
-  .hero-overlay {
-    background: linear-gradient(
-      to bottom, 
-      rgba(0,0,0,0.7) 0%, 
-      rgba(0,0,0,0.4) 70%,
-      transparent 100%
-    );
-  }
-}
-
 /* Text Sections */
 .text-section {
     display: block;
@@ -204,7 +181,7 @@ nav {
 .headshot-image {
     border-radius: 50%;
     aspect-ratio: 1/1;
-    height: clamp(200px, 30vw, 500px);
+    height: clamp(300px, 30vw, 500px);
     object-fit: cover;
     margin: 0 auto;
     transition: height 0.3s ease;
@@ -324,6 +301,27 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    .hero-banner {
+    height: 75vh;
+    min-height: 400px;
+    }
+  
+    .hero-content {
+    left: 5%;
+    bottom: 10%;
+    padding-right: 5%;
+    }
+  
+    .hero-overlay {
+    background: linear-gradient(
+      to bottom, 
+      rgba(0,0,0,0.7) 0%, 
+      rgba(0,0,0,0.4) 70%,
+      transparent 100%
+    );
+    }
+
     nav { 
         flex-direction: column;
         padding: 1rem;
@@ -343,7 +341,7 @@ footer {
 
     #about {
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
     }
 
     #projects {
@@ -352,5 +350,6 @@ footer {
     
     #contact {
         flex-direction: column;
+        gap: 30px;
     }
 }

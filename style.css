@@ -323,7 +323,6 @@ footer {
     }
 
     nav { 
-        flex-direction: column;
         padding: 1rem;
     }
     
@@ -363,11 +362,6 @@ footer {
 
     .project-item {
         min-width: 200px;
-    }
-    
-    .project-img {
-    object-fit: cover;
-    height: 210px;
     }
 
     #contact {

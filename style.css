@@ -143,8 +143,7 @@ nav {
 .text-section p {
     margin-bottom: 1.2rem;
     font-weight: 300;
-    font-size: 1.2rem;
-    font-size: clamp(1.1rem, 1.25vw, 1.375rem);
+    font-size: clamp(1.1rem, 1.25vw, 1.3rem);
 }
 
 .text-section ul {
@@ -214,14 +213,14 @@ nav {
 }
 
 .project-box {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 120px;
     padding: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
 }
 
 .project-item {
-    flex: 1 1 calc(33.333% - 20px);
     min-width: 400px;
     max-width: 550px;
     display: flex;
@@ -351,6 +350,8 @@ footer {
     }
 
     .project-box {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
         gap: 80px;
         padding: 0px;
     }

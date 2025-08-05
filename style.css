@@ -8,7 +8,7 @@
 
 :root {
     --primary: #000000;
-    --secondary: #ffffff;
+    --secondary: #7a7a7a;
     --dark: #343434;
     --light: #ffffff;
 }
@@ -146,17 +146,22 @@ nav {
     font-size: clamp(1.1rem, 1.25vw, 1.3rem);
 }
 
-.text-section ul {
-    padding-left: 2rem;
-    margin: 1.5rem 0;
+#about-link{
+    text-decoration: none;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    font-size: clamp(1.1rem, 1.25vw, 1.3rem);
+    color: var(--primary);
 }
 
-.text-section li {
-    margin-bottom: 0.8rem;
+#about-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .project-category {
     padding-top: 10%;
+    text-align: center;
 }
 
 
@@ -281,6 +286,29 @@ nav {
     background-color: var(--dark);
 }
 
+
+/* back to top button */
+
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 18px;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: none; /* Initially hidden */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+#back-to-top:hover {
+  background-color: var(--primary);
+}
+
 /* Footer */
 footer {
     background-color: var(--dark);
@@ -346,6 +374,7 @@ footer {
     .project-category {
     padding-top: 30%;
     padding-bottom: 8%;
+    text-align: left;
     }
 
     .project-box {

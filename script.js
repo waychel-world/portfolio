@@ -1,5 +1,33 @@
 
 
+//Hero text animation
+
+document.addEventListener('DOMContentLoaded', function() {
+const animatedTexts = document.querySelectorAll('.animated-text');
+
+// Trigger animation on scroll
+window.addEventListener('scroll', triggerAnimation);
+window.addEventListener('mousemove', triggerAnimation);
+
+function triggerAnimation() {
+    animateText();
+    // Remove event listeners after first trigger
+    window.removeEventListener('scroll', triggerAnimation);
+    window.removeEventListener('mousemove', triggerAnimation);
+}
+
+function animateText() {
+    animatedTexts.forEach((text, index) => {
+        // Stagger animations
+        setTimeout(() => {
+            text.style.animation = 'handwriting 3s steps(30, end) forwards';
+        }, index * 600);
+    });
+}
+});
+
+
+
 // Back to top button
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,3 +50,5 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
+

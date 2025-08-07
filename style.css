@@ -79,8 +79,8 @@ nav {
 .hero-banner {
   position: relative;
   height: 85vh; /* Adjustable height */
-  max-height: 650px; /* Prevents excessive height on large screens */
-  min-height: 450px; /* Minimum height */
+  max-height: 700px; /* Prevents excessive height on large screens */
+  min-height: 600px; /* Minimum height */
   overflow: hidden;
   margin-bottom: 4rem; /* Creates space for next section */
 }

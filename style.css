@@ -375,11 +375,11 @@ footer {
     }
 
     .underlined-placeholder.underlined-placeholder {
-    font-size: clamp(6rem, 7vw, 9rem);
+    font-size: clamp(5.5rem, 7vw, 9rem);
     }
 
     .animated-text.animated-text {
-    font-size: clamp(6rem, 7vw, 9rem);
+    font-size: clamp(5.5rem, 7vw, 9rem);
     }
 
     nav { 

@@ -20,7 +20,7 @@ function animateText() {
     animatedTexts.forEach((text, index) => {
         // Stagger animations
         setTimeout(() => {
-            text.style.animation = 'handwriting 3s steps(30, end) forwards';
+            text.style.animation = 'handwriting 4s steps(500, end) forwards';
         }, index * 600);
     });
 }

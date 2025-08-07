@@ -374,6 +374,14 @@ footer {
     );
     }
 
+    .underlined-placeholder.underlined-placeholder {
+    font-size: clamp(6rem, 7.5vw, 9.5rem);
+    }
+
+    .animated-text.animated-text {
+    font-size: clamp(6rem, 7.5vw, 9.5rem);
+    }
+
     nav { 
         padding: 1rem;
     }

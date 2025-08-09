@@ -28,6 +28,7 @@ function animateText() {
 
 
 //Hamburger menu toggle
+/*
 document.querySelector('.hamburger').addEventListener('click', function() {
   document.querySelector('.nav-links').classList.toggle('active');
 });
@@ -37,6 +38,14 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     document.querySelector('.nav-links').classList.remove('active');
   });
 });
+*/
+
+//2nd try
+function menuOnClick() {
+  document.getElementById("menu-bar").classList.toggle("change");
+  document.getElementById("nav").classList.toggle("change");
+  document.getElementById("menu-bg").classList.toggle("change-bg");
+}
 
 // Back to top button
 

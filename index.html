@@ -12,17 +12,17 @@
 <body>
     <!-- Header Navigation -->
     <header>
-        <nav class="navbar">
+        <nav class="navbar" id="menu">
             <a href="index.html" class="link">
                 <div class="logo">Rachel Ooi</div>
             </a>
 
             <!-- Hamburger Icon -->
-            <button class="hamburger" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="menu-bar" aria-label="Menu" onclick="menuOnClick()">
+                <div id="bar1" class="bar"></div>
+                <div id="bar2" class="bar"></div>
+                <div id="bar3" class="bar"></div>
+            </div>
 
             <!-- Navigation Links -->
             <ul class="nav-links">
@@ -30,8 +30,13 @@
                 <li><a class="link" href="index.html#portfolio">Portfolio</a></li>
                 <li><a class="link" href="index.html#contact">Contact</a></li>
             </ul>
+
+            <div class="menu-bg" id="menu-bg"></div>
         </nav>
     </header>
+
+
+
 
     <!-- Hero banner -->
     <section class="hero-banner">

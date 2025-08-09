@@ -74,25 +74,6 @@ nav {
     cursor: pointer;
 }
 
-
-/* test section */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-}
-
 .hamburger {
     display: none;
     background: none;
@@ -106,12 +87,8 @@ nav {
     width: 25px;
     height: 3px;
     margin: 5px 0;
-    background: white;
+    background: var(--primary);
 }
-
-/*test section*/
-
-
 
 /* Hero Banner */
 .hero-banner {
@@ -435,6 +412,8 @@ footer {
     
     .nav-links {
         margin-top: 0;
+        height: calc(100vh - 70px);
+        background: rgba(0,0,0,0.9);
     }
     
     .nav-links li {
@@ -446,6 +425,18 @@ footer {
         display: block;
     }
   
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
     .nav-links {
         position: fixed;
         top: 70px; 

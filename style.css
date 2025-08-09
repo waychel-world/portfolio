@@ -410,6 +410,7 @@ footer {
     #about {
         flex-direction: column;
         gap: 30px;
+        margin-bottom: 10vh;
     }
 
     .project-category {

@@ -377,7 +377,7 @@ h2 {
 }
 
 #back-to-top:hover {
-  background-color: var(--primary);
+  background-color: var(--accent1);
 }
 
 /* Footer */

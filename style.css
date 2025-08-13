@@ -16,7 +16,7 @@ html {
     --dark: #343434;
     --light: #ffffff;
     --accent1: #ff4722;
-    --accent2: #4ecdc4;
+    --accent2: #4ecdc4; /* unused */
 }
 
 body {
@@ -354,7 +354,7 @@ h2 {
 }
 
 .contact-btn:hover {
-    background-color: var(--secondary);
+    background-color: var(--accent1);
 }
 
 
@@ -388,6 +388,7 @@ footer {
     padding: 3rem;
 }
 
+/*
 .social-links {
     margin-top: 1.5rem;
 }
@@ -397,6 +398,7 @@ footer {
     margin: 0 1rem;
     text-decoration: none;
 }
+*/
 
 /* Responsive Design */
 @media (max-width: 768px) {

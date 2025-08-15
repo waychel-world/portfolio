@@ -535,4 +535,7 @@ footer {
     height: clamp(200px, 120vw, 600px);
     }
 
+    #copy-text {
+    display: block;
+    }
 }

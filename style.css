@@ -354,7 +354,7 @@ h2 {
 .contact-btn {
     border: 0;
     display: inline-block;
-    padding: 1.25rem 2.5rem;
+    padding: 1.3rem 1rem;
     background-color: var(--primary);
     color: white;
     text-decoration: none;
@@ -367,9 +367,10 @@ h2 {
 }
 
 #copy-text {
-    display: inline;
+    display: block;
+    padding: 0.8rem 0 0 0;    
     cursor: pointer; 
-    padding-left: 1rem;
+    font-weight: 500;
 }
 
 /* back to top button */
@@ -537,5 +538,6 @@ footer {
 
     #copy-text {
     display: block;
+    padding: 1rem 0;
     }
 }

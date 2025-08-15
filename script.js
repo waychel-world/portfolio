@@ -54,6 +54,69 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+
+// Email obfuscation script
+
+(function() {
+  // Email components (never stored as complete string)
+  const emailParts = {
+    user: 'hello',
+    domain: 'rachelooi.space'
+  };
+
+  const contactBtn = document.getElementById('contact-btn');
+  const copyText = document.getElementById('copy-text');
+  
+  const email = `${emailParts.user}@${emailParts.domain}`;
+
+  contactBtn.textContent = email.replace('@', ' [at] ');
+
+  // Contact button functionality
+  contactBtn.addEventListener('click', () => {
+    window.location.href = `mailto:${emailParts.user}@${emailParts.domain}`;
+  });
+
+  // Copy functionality with visual feedback
+  copyText.addEventListener('click', async () => {
+    try {
+      // Assemble email only at moment of copying
+      const email = `${emailParts.user}@${emailParts.domain}`;
+      
+      // Modern clipboard API
+      await navigator.clipboard.writeText(email);
+      
+      // Visual feedback
+      const originalText = copyText.textContent;
+      copyText.textContent = '✓ email copied!';
+      
+      // Revert after 1 second
+      setTimeout(() => {
+        copyText.textContent = originalText;
+      }, 1000);
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = `${emailParts.user}@${emailParts.domain}`;
+      document.body.appendChild(textArea);
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        copyText.textContent = '✓ email copied!';
+      } catch (copyErr) {
+        copyText.textContent = 'Press Ctrl+C';
+      }
+      
+      document.body.removeChild(textArea);
+      
+      setTimeout(() => {
+        copyText.textContent = '(click here to copy)';
+      }, 1000);
+    }
+  });
+})();
+
+
 // Back to top button
 
 document.addEventListener('DOMContentLoaded', () => {

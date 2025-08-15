@@ -1,14 +1,14 @@
 // Wait for header and footer to load before initializing dependent functionality
 Promise.all([
     // Load header
-    fetch('_includes/header.html')
+    fetch('includes/header.html')
         .then(res => res.text())
         .then(data => {
             document.getElementById('header').innerHTML = data;
         }),
     
     // Load footer
-    fetch('_includes/footer.html')
+    fetch('includes/footer.html')
         .then(res => res.text())
         .then(data => {
             document.getElementById('footer').innerHTML = data;

@@ -163,3 +163,95 @@ function initBackToTop() {
         });
     });
 }
+
+// Project Page Image Carousel 
+
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    
+    // Set initial slide widths based on their natural aspect ratio
+    slides.forEach(slide => {
+        const img = slide.querySelector('img');
+        const clone = slide.cloneNode(true);
+        track.appendChild(clone);
+
+        // Use naturalWidth and naturalHeight to calculate aspect ratio
+        img.onload = function() {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            // Since height is fixed at 500px, set width accordingly
+            img.style.width = (500 * aspectRatio) + 'px';
+        };
+    });
+    
+    // Create dots for navigation
+    slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.dataset.index = i;
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = Array.from(dotsContainer.children);
+    
+    // Function to update carousel position
+    const updateCarousel = (targetIndex) => {
+        // Calculate the total width of all previous slides
+        let newPosition = 0;
+        for (let i = 0; i < targetIndex; i++) {
+            newPosition += slides[i].querySelector('img').width;
+        }
+        
+        track.style.transform = `translateX(-${newPosition}px)`;
+        
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[targetIndex].classList.add('active');
+        
+        currentIndex = targetIndex;
+    };
+    
+    let currentIndex = 0;
+    
+    // Next button event listener
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < slides.length - 1) {
+            updateCarousel(currentIndex + 1);
+        } else {
+            updateCarousel(0); // Loop back to start
+        }
+    });
+    
+    // Previous button event listener
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            updateCarousel(currentIndex - 1);
+        } else {
+            updateCarousel(slides.length - 1); // Loop to end
+        }
+    });
+    
+    // Dot navigation event listeners
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const targetIndex = parseInt(dot.dataset.index);
+            updateCarousel(targetIndex);
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') {
+            nextButton.click();
+        } else if (e.key === 'ArrowLeft') {
+            prevButton.click();
+        }
+    });
+    
+    // Initialize carousel
+    updateCarousel(0);
+});

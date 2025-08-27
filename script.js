@@ -252,6 +252,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Auto-play functionality
+    let autoplayInterval = setInterval(() => {
+        nextButton.click();
+    }, 4000);
+    
+    // Pause autoplay when hovering over carousel
+    const carousel = document.querySelector('.carousel');
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(() => {
+            nextButton.click();
+        }, 4000);
+    });
+
     // Initialize carousel
     updateCarousel(0);
 });

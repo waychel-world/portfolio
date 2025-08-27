@@ -528,7 +528,7 @@ b {
 /* Project Page Image Carousel */
 
 .carousel-container {
-    width: 70%;
+    width: 75%;
     max-width: 1200px;
     margin: 0 auto 10% auto;
     position: relative;
@@ -547,7 +547,7 @@ b {
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    height: 500px; 
+    height: clamp(450px, 60vh, 600px); 
 }
 
 .carousel-slide {
@@ -757,6 +757,17 @@ b {
         padding-bottom: 2rem;
     }
 
+    .project-page {
+        padding: 4rem 1.5rem;
+    }
+
+    .carousel-container {
+        width: 90%;
+        margin: 0 auto 10% auto;
+        position: relative;
+        padding: 30px 0;
+    }
+
     #contact {
         flex-direction: column;
         gap: 30px;
@@ -773,7 +784,7 @@ b {
     }
     
     .carousel-track {
-        height: 300px;
+        height: clamp(200px, 40vh, 400px); 
     }
     
     .carousel-button {

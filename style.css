@@ -70,7 +70,7 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 50px;
 }
 
 .nav-links li {
@@ -131,8 +131,8 @@ nav {
 }
 
 .dropdown-menu a:hover {
-    background: var(--accent1);
-    color: white;
+    background: var(--light);
+    color: var(--accent1);
 }
 
 /* Show on hover (desktop) */

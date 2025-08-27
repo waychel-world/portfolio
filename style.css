@@ -117,6 +117,17 @@ nav {
     text-align: center;
 }
 
+/* Caret */
+.caret {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate caret when active (mobile only) */
+.dropdown.active .caret {
+    transform: rotate(180deg); /* flips ▼ to ▲ */
+}
+
 /* Dropdown items */
 .dropdown-menu li {
     margin: 0;
@@ -771,6 +782,18 @@ b {
         z-index: 900;
     }
     
+    /* Smooth slide for dropdown-menu on mobile */
+    .dropdown-menu {
+        max-height: 0;          /* hidden by default */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    /* When active, expand */
+    .dropdown.active .dropdown-menu {
+        max-height: 500px;      /* large enough to fit all items */
+    }
+
    .logo {
         position: relative;
         z-index: 1001;

@@ -80,30 +80,60 @@ function initHamburgerMenu() {
 //Dropdown menu functionality
 function initDropdowns() {
     const dropdowns = document.querySelectorAll('.dropdown');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
+        const caret = dropdown.querySelector('.caret');
 
         toggle.addEventListener('click', (e) => {
-            // Prevent link navigation on mobile toggle
+            // Only intercept click on mobile
             if (window.innerWidth <= 768) {
                 e.preventDefault();
 
                 // Close all other dropdowns first
                 dropdowns.forEach(d => {
-                    if (d !== dropdown) d.classList.remove('active');
+                    if (d !== dropdown) {
+                        d.classList.remove('active');
+                        d.querySelector('.caret').textContent = '▼';
+                    }
                 });
 
                 // Toggle this one
                 dropdown.classList.toggle('active');
+                caret.textContent = dropdown.classList.contains('active') ? '▲' : '▼';
             }
         });
     });
 
     // Close when clicking outside
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown')) {
-            dropdowns.forEach(d => d.classList.remove('active'));
+        if (!e.target.closest('.dropdown') && !e.target.closest('.hamburger')) {
+            dropdowns.forEach(d => {
+                d.classList.remove('active');
+                d.querySelector('.caret').textContent = '▼';
+            });
+        }
+    });
+
+    // Close dropdown + reset caret on link click
+    navLinks.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            dropdowns.forEach(d => {
+                d.classList.remove('active');
+                d.querySelector('.caret').textContent = '▼';
+            });
+        }
+    });
+
+    // Reset caret when hamburger closes
+    hamburger.addEventListener('click', () => {
+        if (!navLinks.classList.contains('active')) {
+            dropdowns.forEach(d => {
+                d.classList.remove('active');
+                d.querySelector('.caret').textContent = '▼';
+            });
         }
     });
 }

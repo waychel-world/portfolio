@@ -48,100 +48,171 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Hamburger menu functionality
+// ----------------- Hamburger + Nav -----------------
 function initHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (!hamburger || !navLinks) return;
 
-    // Safety check
-    if (!hamburger || !navLinks) return;
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
 
-    hamburger.addEventListener('click', () => {
-        // Toggle active class on hamburger
-        hamburger.classList.toggle('active');
-        // Toggle active class on nav links
-        navLinks.classList.toggle('active');
-        
-        // Prevent scrolling when menu is open
-        document.body.style.overflow = navLinks.classList.contains('active') 
-            ? 'hidden' 
-            : 'auto';
+    // prevent body scroll while mobile nav is open
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+
+    // if we're closing the mobile menu, also collapse any open dropdowns
+    if (!navLinks.classList.contains('active')) {
+      document.querySelectorAll('.dropdown').forEach(d => {
+        d.classList.remove('active');
+        const c = d.querySelector('.caret'); if (c) c.textContent = '▼';
+        const m = d.querySelector('.dropdown-menu'); if (m) m.style.maxHeight = null;
+        const t = d.querySelector('.dropdown-toggle'); if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // When clicking nav links: close mobile menu, except when clicking the portfolio toggle itself
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.nav-links a');
+    if (!link) return;
+
+    // if it's the dropdown-toggle, let the dropdown handler manage it (we use stopPropagation there)
+    if (link.classList.contains('dropdown-toggle')) return;
+
+    // otherwise close the mobile menu (and reset dropdowns)
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+    document.body.style.overflow = 'auto';
+
+    document.querySelectorAll('.dropdown').forEach(d => {
+      d.classList.remove('active');
+      const c = d.querySelector('.caret'); if (c) c.textContent = '▼';
+      const m = d.querySelector('.dropdown-menu'); if (m) m.style.maxHeight = null;
+      const t = d.querySelector('.dropdown-toggle'); if (t) t.setAttribute('aria-expanded', 'false');
     });
-
-    // Event delegation for nav links
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-links a')) {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
+  });
 }
 
-//Dropdown menu functionality
+// ----------------- Dropdowns (mobile toggle + auto-height) -----------------
 function initDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+  const dropdowns = Array.from(document.querySelectorAll('.dropdown'));
+  if (!dropdowns.length) return;
 
-    dropdowns.forEach(dropdown => {
-        const toggle = dropdown.querySelector('.dropdown-toggle');
-        const caret = dropdown.querySelector('.caret');
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const caret = dropdown.querySelector('.caret');
+    const menu = dropdown.querySelector('.dropdown-menu');
 
-        toggle.addEventListener('click', (e) => {
-            // Only intercept click on mobile
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
+    // accessibility initial states
+    if (toggle) toggle.setAttribute('aria-haspopup', 'true');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    if (menu) menu.setAttribute('aria-hidden', 'true');
 
-                // Close all other dropdowns first
-                dropdowns.forEach(d => {
-                    if (d !== dropdown) {
-                        d.classList.remove('active');
-                        d.querySelector('.caret').textContent = '▼';
-                    }
-                });
+    // mobile toggle click
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation(); // prevent document click from closing nav immediately
 
-                // Toggle this one
-                dropdown.classList.toggle('active');
-                caret.textContent = dropdown.classList.contains('active') ? '▲' : '▼';
-            }
+        // close any other open dropdowns first
+        dropdowns.forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove('active');
+            const c2 = d.querySelector('.caret'); if (c2) c2.textContent = '▼';
+            const m2 = d.querySelector('.dropdown-menu'); if (m2) { m2.style.maxHeight = null; m2.setAttribute('aria-hidden', 'true'); }
+            const t2 = d.querySelector('.dropdown-toggle'); if (t2) t2.setAttribute('aria-expanded', 'false');
+          }
         });
+
+        const opening = !dropdown.classList.contains('active');
+        if (opening) {
+          dropdown.classList.add('active');
+          if (caret) caret.textContent = '▲';
+          toggle.setAttribute('aria-expanded', 'true');
+
+          // AUTO height: set maxHeight to the real content height
+          menu.style.maxHeight = menu.scrollHeight + 'px';
+          menu.setAttribute('aria-hidden', 'false');
+
+          // If content height might change later, keep the inline maxHeight.
+        } else {
+          // closing
+          dropdown.classList.remove('active');
+          if (caret) caret.textContent = '▼';
+          toggle.setAttribute('aria-expanded', 'false');
+
+          menu.style.maxHeight = '0px';
+          menu.setAttribute('aria-hidden', 'true');
+
+          // optional: after transition, cleanup inline style
+          menu.addEventListener('transitionend', function tidy() {
+            if (menu.style.maxHeight === '0px') menu.style.maxHeight = null;
+            menu.removeEventListener('transitionend', tidy);
+          });
+        }
+      }
     });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.dropdown') && !e.target.closest('.hamburger')) {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
-    });
+    // clicking a submenu link should close dropdown + mobile nav
+    menu.addEventListener('click', (e) => {
+      const clickedLink = e.target.closest('a');
+      if (!clickedLink) return;
 
-    // Close dropdown + reset caret on link click
-    navLinks.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
-    });
+      // collapse dropdown
+      dropdown.classList.remove('active');
+      if (caret) caret.textContent = '▼';
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.style.maxHeight = null;
+      menu.setAttribute('aria-hidden', 'true');
 
-    // Reset caret when hamburger closes
-    hamburger.addEventListener('click', () => {
-        if (!navLinks.classList.contains('active')) {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
+      // also close mobile nav if open
+      const navLinks = document.querySelector('.nav-links');
+      const hamburger = document.querySelector('.hamburger');
+      if (navLinks && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
     });
+  });
+
+  // close dropdown(s) when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown')) {
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        const c = d.querySelector('.caret'); if (c) c.textContent = '▼';
+        const m = d.querySelector('.dropdown-menu'); if (m) { m.style.maxHeight = null; m.setAttribute('aria-hidden', 'true'); }
+        const t = d.querySelector('.dropdown-toggle'); if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // on resize, collapse mobile-specific inline styles when switching to desktop
+  window.addEventListener('resize', () => {
+    dropdowns.forEach(d => {
+      const t = d.querySelector('.dropdown-toggle');
+      const m = d.querySelector('.dropdown-menu');
+      if (window.innerWidth > 768) {
+        d.classList.remove('active');
+        if (t) t.setAttribute('aria-expanded', 'false');
+        if (m) m.style.maxHeight = null;
+        const c = d.querySelector('.caret'); if (c) c.textContent = '▼';
+      } else {
+        // ensure closed on small screens by default
+        if (m) m.style.maxHeight = null;
+      }
+    });
+  }, { passive: true });
 }
 
+// ----------------- Initialize -----------------
 document.addEventListener('DOMContentLoaded', () => {
-    initHamburgerMenu();
-    initDropdowns();
+  initHamburgerMenu();
+  initDropdowns();
 });
+
 
 
 // Email obfuscation script

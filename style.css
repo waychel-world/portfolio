@@ -752,7 +752,7 @@ b {
     }
     
     .nav-links a {
-        font-size: clamp(2.5rem, 3vw, 4rem);
+        font-size: clamp(1rem, 1.5vw, 2rem);
         color: var(--primary);
     }
 

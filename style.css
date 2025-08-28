@@ -90,6 +90,8 @@ nav {
 /* Dropdown Base */
 .dropdown {
     position: relative;
+    display: flex;
+    align-items: center;    
 }
 
 .dropdown-link {
@@ -99,7 +101,7 @@ nav {
 }
 
 .dropdown-toggle {
-    background: transparent;
+    background: none;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -108,10 +110,14 @@ nav {
     align-items: center;
     color: var(--primary); 
 }
-        
+
+.dropdown-toggle:focus {
+  outline: none;
+}
+
 /* Hidden by default */
 .dropdown-menu {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 36px; /* sits just under navbar */
@@ -127,8 +133,6 @@ nav {
     text-align: center;
     transition: 0.1s ease-in-out;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    visibility: hidden;
-    opacity: 0;
 }
 
 /* Caret */
@@ -164,12 +168,6 @@ nav {
     color: var(--accent1);
 }
 
-/* Show on hover (desktop) */
-.dropdown:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-}
-
 /* Bridge the gap caused by top:36px to move dropdown-menu lower*/
 .dropdown:hover::before {
     content: "";
@@ -180,11 +178,36 @@ nav {
     width: 100%;
 }
 
-/* Mobile: show when active */
-.dropdown.active .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1) translateX(5px);
+/* Show on hover (desktop only) */
+@media (min-width: 769px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .dropdown {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    background: var(--light);
+    width: 100%;
+  }
+
+  .dropdown.active .dropdown-menu {
+    display: block;
+  }
+
+  /* Kill hover behavior completely on mobile */
+  .dropdown:hover .dropdown-menu {
+    display: none !important;
+  }
 }
 
 .link {

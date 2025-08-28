@@ -101,9 +101,10 @@ nav {
         
 /* Hidden by default */
 .dropdown-menu {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 140%; /* sits just under navbar */
+    top: 36px; /* sits just under navbar */
     left: 50%;   /* start from the middle of parent <li> */
     transform: translateX(-50%); /* shift back by half its width so it's centered */
     background: white;
@@ -111,11 +112,13 @@ nav {
     padding: 0.5rem 0;
     margin: 0;
     min-width: 180px;
-    border-radius: 0 0 6px 6px; /* rounded only at bottom */
+    border-radius: 8px; 
     z-index: 1000;
     text-align: center;
+    transition: 0.1s ease-in-out;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    /*clip-path: inset(0 -15px -15px -15px); /* hides shadow on top */
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* Caret */
@@ -149,22 +152,25 @@ nav {
 
 /* Show on hover (desktop) */
 .dropdown:hover .dropdown-menu {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
-/* Bridge the gap caused by top:140% to move dropdown-menu lower*/
+/* Bridge the gap caused by top:36px to move dropdown-menu lower*/
 .dropdown:hover::before {
     content: "";
     position: absolute;
     top: 100%;
     left: 0;
-    height: 20px; /* matches your gap */
+    height: 36px; /* matches your gap */
     width: 100%;
 }
 
 /* Mobile: show when active */
 .dropdown.active .dropdown-menu {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1) translateX(5px);
 }
 
 .link {

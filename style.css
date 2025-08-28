@@ -184,7 +184,7 @@ nav {
         height: 36px; /* matches your gap */
         width: 100%;
     }
-    
+
     .dropdown:hover button{
         color: var(--accent1);
     }
@@ -825,10 +825,6 @@ b {
     .nav-links a {
         font-size: clamp(2rem, 2.5vw, 3rem);
         color: var(--primary);
-    }
-
-    .nav-links li {
-        margin: 1.5rem 0;
     }
 
     .hamburger {

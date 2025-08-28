@@ -1,25 +1,31 @@
 // Wait for header and footer to load before initializing dependent functionality
+
 Promise.all([
-    // Load header
-    fetch('includes/header.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('header').innerHTML = data;
-        }),
-    
-    // Load footer
-    fetch('includes/footer.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        })
+  fetch('includes/header.html')
+      .then(res => res.text())
+      .then(data => {
+          document.getElementById('header').innerHTML = data;
+      }),
+  
+  fetch('includes/footer.html')
+      .then(res => res.text())
+      .then(data => {
+          document.getElementById('footer').innerHTML = data;
+      })
 ]).then(() => {
-    // Initialize components that depend on header/footer
-    initHamburgerMenu();
-    initEmailObfuscation();
-    initBackToTop();
+  // Initialize components AFTER header/footer injected
+  initHamburgerMenu();
+  initDropdowns();   // ✅ now runs at the right time
+  initEmailObfuscation();
+  initBackToTop();
 }).catch(error => {
-    console.error('Error loading header/footer:', error);
+  console.error('Error loading header/footer:', error);
+});
+
+// Remove the duplicate DOMContentLoaded init — keep only this if you want
+document.addEventListener('DOMContentLoaded', () => {
+  initHamburgerMenu(); // optional, but only if header is inline instead of fetched
+  initDropdowns();
 });
 
 // Animated text initialization (doesn't depend on header/footer)
@@ -146,12 +152,6 @@ function initDropdowns() {
         });
     }
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    initHamburgerMenu();
-    initDropdowns();
-});
 
 
 // Email obfuscation script

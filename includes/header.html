@@ -15,16 +15,19 @@
         <ul class="nav-links">
             <li><a href="about.html">About</a></li>
             <li class="dropdown">
-                <a href="index.html#portfolio" class="dropdown-toggle">
+                <a href="index.html#portfolio" class="dropdown-link">Portfolio</a>
+                <!-- separate button purely for toggling the submenu -->
+                <button class="dropdown-toggle" aria-expanded="false" aria-controls="portfolio-menu">
                     <span class="caret">▼</span>
-                    Portfolio 
-                </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#ecosystem-building">Ecosystem Building</a></li>
-                        <li><a href="index.html#research-writing">Research & Writing</a></li>
-                        <li><a href="index.html#creative-comms">Creative Communications</a></li>
-                    </ul>
+                </button>
+
+                <ul id="portfolio-menu" class="dropdown-menu">
+                    <li><a href="index.html#ecosystem-building">Ecosystem Building</a></li>
+                    <li><a href="index.html#research-writing">Research & Writing</a></li>
+                    <li><a href="index.html#creative-comms">Creative Communications</a></li>
+                </ul>
             </li>
+
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
     </nav>

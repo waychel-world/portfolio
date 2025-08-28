@@ -92,11 +92,20 @@ nav {
     position: relative;
 }
 
+.dropdown-link {
+    text-decoration: none; 
+    color: var(--primary); 
+    font-weight: 500; 
+}
+
 .dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
 }
         
 /* Hidden by default */
@@ -123,8 +132,12 @@ nav {
 
 /* Caret */
 .caret {
-    font-size: 0.8rem;
+    font-size: 1rem;
     transition: transform 0.3s ease;
+}
+
+.dropdown:hover button{
+    color: var(--accent1);
 }
 
 /* Rotate caret when active */

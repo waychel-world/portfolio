@@ -79,67 +79,82 @@ function initHamburgerMenu() {
 
 //Dropdown menu functionality
 function initDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
 
-    dropdowns.forEach(dropdown => {
-        const toggle = dropdown.querySelector('.dropdown-toggle');
-        const caret = dropdown.querySelector('.caret');
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    const caret = dropdown.querySelector('.caret');
 
-        toggle.addEventListener('click', (e) => {
-            // Only intercept click on mobile
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
+    toggle.addEventListener('click', (e) => {
+      // only intercept on mobile
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
 
-                // Close all other dropdowns first
-                dropdowns.forEach(d => {
-                    if (d !== dropdown) {
-                        d.classList.remove('active');
-                        d.querySelector('.caret').textContent = '▼';
-                    }
-                });
-
-                // Toggle this one
-                dropdown.classList.toggle('active');
-                caret.textContent = dropdown.classList.contains('active') ? '▲' : '▼';
-            }
+        // close others
+        dropdowns.forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove('active');
+            const c = d.querySelector('.caret');
+            if (c) c.textContent = '▼';
+            const t = d.querySelector('.dropdown-toggle');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
         });
+
+        // toggle this one
+        dropdown.classList.toggle('active');
+        const expanded = dropdown.classList.contains('active');
+        caret.textContent = expanded ? '▲' : '▼';
+        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      }
     });
+  });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-        // ignore clicks on toggles
-        if (e.target.closest('.dropdown-toggle')) return;
+  // outside clicks
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.dropdown-toggle')) return;
+    if (!e.target.closest('.dropdown') && !e.target.closest('.hamburger')) {
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        const c = d.querySelector('.caret');
+        if (c) c.textContent = '▼';
+        const t = d.querySelector('.dropdown-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
 
-        if (!e.target.closest('.dropdown') && !e.target.closest('.hamburger')) {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
-    });
+  // close dropdowns on normal nav link clicks (but not the toggle)
+  navLinks.addEventListener('click', (e) => {
+    if (e.target.closest('.dropdown-toggle')) return;
+    if (e.target.tagName === 'A') {
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        d.querySelector('.caret').textContent = '▼';
+        const t = d.querySelector('.dropdown-toggle');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
 
-    // Close dropdown + reset caret on link click
-    navLinks.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
-    });
-
-    // Reset caret when hamburger closes
+  // reset when hamburger closes
+  if (hamburger) {
     hamburger.addEventListener('click', () => {
-        if (!navLinks.classList.contains('active')) {
-            dropdowns.forEach(d => {
-                d.classList.remove('active');
-                d.querySelector('.caret').textContent = '▼';
-            });
-        }
+      if (!navLinks.classList.contains('active')) {
+        dropdowns.forEach(d => {
+          d.classList.remove('active');
+          d.querySelector('.caret').textContent = '▼';
+          const t = d.querySelector('.dropdown-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+      }
     });
+  }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     initHamburgerMenu();

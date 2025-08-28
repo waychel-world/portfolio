@@ -87,27 +87,23 @@ nav {
     color: var(--accent1);
 }
 
-        /* Dropdown Base */
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            cursor: pointer;
-        }
-        
-        .dropdown-menu {
-            list-style: none;
-        }
+/* Dropdown Base */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
         
 /* Hidden by default */
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%; /* sits just under navbar */
+    top: 140%; /* sits just under navbar */
     left: 50%;   /* start from the middle of parent <li> */
     transform: translateX(-50%); /* shift back by half its width so it's centered */
     background: white;
@@ -119,7 +115,7 @@ nav {
     z-index: 1000;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    clip-path: inset(0 -15px -15px -15px); /* hides shadow on top */
+    /*clip-path: inset(0 -15px -15px -15px); /* hides shadow on top */
 }
 
 /* Caret */
@@ -154,6 +150,16 @@ nav {
 /* Show on hover (desktop) */
 .dropdown:hover .dropdown-menu {
     display: block;
+}
+
+/* Bridge the gap caused by top:140% to move dropdown-menu lower*/
+.dropdown:hover::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 20px; /* matches your gap */
+    width: 100%;
 }
 
 /* Mobile: show when active */

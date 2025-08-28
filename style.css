@@ -116,7 +116,11 @@ nav {
 }
 
 .dropdown-toggle:focus {
-  outline: none;
+    outline: none;
+}
+
+.dropdown-toggle:hover {
+    color: var(--accent1);
 }
 
 /* Hidden by default */
@@ -143,10 +147,6 @@ nav {
 .caret {
     font-size: 1rem;
     transition: none;
-}
-
-.dropdown:hover button{
-    color: var(--accent1);
 }
 
 /* Dropdown items */
@@ -184,6 +184,10 @@ nav {
         height: 36px; /* matches your gap */
         width: 100%;
     }
+    
+    .dropdown:hover button{
+        color: var(--accent1);
+    }
 }
 
 /* Mobile styles */
@@ -210,6 +214,11 @@ nav {
 
     .dropdown.active button {
         color: var(--accent1);
+    }
+
+    .dropdown-menu.dropdown-menu a{
+        font-size: clamp(1.5rem, 2vw, 2.5rem);
+        padding: 0;
     }
 
     .dropdown-menu a:hover {

@@ -109,6 +109,9 @@ function initDropdowns() {
 
     // Close when clicking outside
     document.addEventListener('click', (e) => {
+        // ignore clicks on toggles
+        if (e.target.closest('.dropdown-toggle')) return;
+
         if (!e.target.closest('.dropdown') && !e.target.closest('.hamburger')) {
             dropdowns.forEach(d => {
                 d.classList.remove('active');

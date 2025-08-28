@@ -818,11 +818,6 @@ b {
     .dropdown.active .dropdown-menu {
         display: block;
     }
-    
-    /* Remove hover effect on mobile */
-    .dropdown:hover .dropdown-menu {
-        display: none;
-    }
 
    .logo {
         position: relative;

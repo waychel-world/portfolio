@@ -818,19 +818,30 @@ b {
             
     /* Adjust dropdown for mobile */
     .dropdown-menu {
+        display: none; /* default hidden */
         position: static;
         transform: none;
         left: auto;
         width: 100%;
         box-shadow: none;
-        display: none;
         background: var(--light);
         border-radius: 6px;
         margin-top: 0.5rem;
+        visibility: visible; /* no opacity fade on mobile */
+        opacity: 1;
     }
-            
+
     .dropdown.active .dropdown-menu {
-        display: block;
+        display: block; /* show when active */
+    }
+
+    /* disable hover dropdowns entirely on mobile */
+    .dropdown:hover .dropdown-menu {
+        display: none !important;
+    }
+
+    .caret {
+        font-size: clamp(2rem, 2.5vw, 3rem);
     }
 
    .logo {

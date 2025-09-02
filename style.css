@@ -564,6 +564,8 @@ h2 {
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.25vw, 1.3rem);
 }
 
 .contact-btn:hover {
@@ -608,7 +610,7 @@ footer {
 }
 
 
-/* Project Page */
+/* Project Page - Reused for About Page*/
 
 .project-page {
     padding: 3rem 25%;
@@ -617,7 +619,7 @@ footer {
 .project-page h1 {
     font-size: 2.5rem;
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.3;
 }
 
@@ -634,7 +636,7 @@ footer {
     font-weight: 500;
     color: var(--primary);
     margin: 0;
-    font-size: clamp(1.2rem, 1.4vw, 1.8rem);
+    font-size: clamp(1.75rem, 2vw, 2.25rem);
 }
 
 .project-page p {
@@ -660,6 +662,48 @@ footer {
 
 b {
   font-weight: 500;
+}
+
+.padding-bottom {
+    padding-bottom: 25%;
+}
+
+.about-media {
+    padding: 3rem 25%;
+    display: flex;
+    gap: 30px;
+}
+
+.gallop-video {
+
+}
+
+.video-container {
+    position: relative;
+    width: 360px;
+    height: 480px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    flex: 1;
+}
+
+/* to reduce contrast */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #424242;
+    opacity: 30%;
+    pointer-events: none;
+}
+
+.about-image {
+    flex: 1;
+    max-height: 480px;
+    border-radius: 8px;
 }
 
 /* Project Page Image Carousel */
@@ -898,6 +942,10 @@ b {
     }
 
     .project-page {
+        padding: 4rem 1.5rem;
+    }
+
+    .about-media {
         padding: 4rem 1.5rem;
     }
 

@@ -993,17 +993,17 @@ b {
     }
 
     .about-media {
-        padding: 4rem 1.5rem;
+        padding: 2rem 1.5rem;
         flex-direction: column; /* Stack items vertically */
     }
     
     .headshot-container, 
     .video-container {
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .video-overlay {
-        opacity: 10%;
+        opacity: 20%;
     }
 }
 

@@ -669,13 +669,14 @@ b {
 }
 
 .about-media {
-    padding: 3rem 25%;
+    padding: 3rem 20%;
     display: flex;
-    gap: 30px;
+    justify-content: space-evenly;
 }
 
-.gallop-video {
-
+.about-headshot {
+    max-height: 480px;
+    border-radius: 8px;
 }
 
 .video-container {
@@ -685,7 +686,6 @@ b {
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    flex: 1;
 }
 
 /* to reduce contrast */
@@ -700,11 +700,7 @@ b {
     pointer-events: none;
 }
 
-.about-image {
-    flex: 1;
-    max-height: 480px;
-    border-radius: 8px;
-}
+
 
 /* Project Page Image Carousel */
 

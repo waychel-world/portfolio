@@ -366,7 +366,7 @@ nav {
 }
 
 
-#portfolio {
+#offerings {
     font-weight: 600;
     font-size: clamp(2.75rem, 3vw, 3.5rem);
     text-align: center;
@@ -457,13 +457,14 @@ h2 {
     display: grid;
     gap: 4vw;
     padding-bottom: 80px;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;
+    justify-items: center;
+    /* grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr; */
 }
 
 .project-item {
     min-width: 300px;
-    max-width: 550px;
+    max-width: 800px;
     display: flex;
     border-radius: 8px;
     background: #ffffff;
@@ -966,11 +967,11 @@ b {
         min-width: 200px;
     }
 
-    #portfolio {
+    #offerings {
         text-align: left;
     }
 
-    .portfolio-box {
+    .offerings-box {
         padding-bottom: 2rem;
     }
 
